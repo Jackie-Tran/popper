@@ -1,25 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
+import {
+  Button,
+  Container,
+  Popcorn,
+  Popper,
+  View,
+  Wrapper,
+} from './App.styled';
+import { usePopper } from './usePopper/usePopper';
 
 function App() {
+  const [popcorn, setPopcorn] = useState<any>();
+  const [popper, setPopper] = useState<any>();
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const { styles } = usePopper(popcorn, popper, {
+    placement: 'bottom',
+  });
+
+  useEffect(() => {
+    if (wrapperRef.current) {
+      wrapperRef.current.scrollLeft = wrapperRef.current.offsetWidth / 2;
+      wrapperRef.current.scrollTop = wrapperRef.current.offsetHeight / 2;
+    }
+  }, []);
+
+  const onClick = () => {
+    
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Wrapper ref={wrapperRef}>
+        <View>
+          <Popcorn ref={setPopcorn}>Popcorn Content</Popcorn>
+          <Popper ref={setPopper} style={styles.popper}>
+            Tooltip Info
+          </Popper>
+        </View>
+      </Wrapper>
+      <Button onClick={onClick}>Move Popcorn</Button>
+    </Container>
   );
 }
 
