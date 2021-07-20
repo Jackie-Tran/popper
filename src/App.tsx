@@ -24,11 +24,7 @@ function App() {
       wrapperRef.current.scrollTop = wrapperRef.current.offsetHeight / 2;
     }
   }, []);
-
-  const onClick = () => {
-    
-  }
-
+  
   return (
     <Container>
       <Wrapper ref={wrapperRef}>
@@ -39,7 +35,6 @@ function App() {
           </Popper>
         </View>
       </Wrapper>
-      <Button onClick={onClick}>Move Popcorn</Button>
     </Container>
   );
 }

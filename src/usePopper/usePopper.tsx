@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useLayoutEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo } from "react";
 
 type Styles = {
   [key: string]: React.CSSProperties;
@@ -8,9 +8,9 @@ type PopperState = {
   styles: Styles;
 };
 
-type PopperPlacement = 'top' | 'right' | 'bottom' | 'left';
+type PopperPlacement = "top" | "right" | "bottom" | "left";
 
-type PopperStrategy = 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky';
+type PopperStrategy = "static" | "relative" | "absolute" | "fixed" | "sticky";
 
 type PopperOptions = {
   placement?: PopperPlacement;
@@ -28,7 +28,7 @@ export const usePopper = (
   popcorn: HTMLDivElement,
   popper: HTMLDivElement,
   options: PopperOptions = {
-    placement: 'bottom',
+    placement: "bottom",
   }
 ) => {
   const [popcornRect, setPopcornRect] = React.useState<DOMRect>();
@@ -36,8 +36,7 @@ export const usePopper = (
   const [state, setState] = React.useState<PopperState>({
     styles: {
       popper: {
-        position: 'absolute',
-        // transform: `translate(0px, 0px)`,
+        position: "absolute",
       },
     },
   });
@@ -45,7 +44,7 @@ export const usePopper = (
   const calculatePosition = useCallback(
     (placement?: PopperPlacement) => {
       switch (placement) {
-        case 'bottom':
+        case "bottom":
           return {
             top: popcorn?.offsetTop + popcorn?.offsetHeight + 16, // offset,
             left:
@@ -53,7 +52,7 @@ export const usePopper = (
               popcorn?.offsetWidth / 2 -
               popper?.offsetWidth / 2,
           };
-        case 'top':
+        case "top":
           return {
             top: popcorn?.offsetTop - popper?.offsetHeight - 16,
             left:
@@ -61,7 +60,7 @@ export const usePopper = (
               popcorn?.offsetWidth / 2 -
               popper?.offsetWidth / 2,
           };
-        case 'left':
+        case "left":
           return {
             top:
               popcorn?.offsetTop +
@@ -69,7 +68,7 @@ export const usePopper = (
               popper?.offsetHeight / 2,
             left: popcorn?.offsetLeft - popper?.offsetWidth - 16,
           };
-        case 'right':
+        case "right":
           return {
             top:
               popcorn?.offsetTop +
@@ -94,18 +93,12 @@ export const usePopper = (
     setState({
       styles: {
         popper: {
-          position: 'absolute',
+          position: "absolute",
           ...calculatePosition(options?.placement),
         },
       },
     });
   }, [options.placement, calculatePosition]);
-
-  useLayoutEffect(() => {
-      console.log(popper);
-      console.log(popcorn);
-      console.log(popcorn.parentNode?.parentNode);
-  }, [popper.scrollWidth, popper.offsetLeft])
 
   return state;
 };

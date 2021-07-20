@@ -11,8 +11,8 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  width: 800px;
-  height: 800px;
+  width: 600px;
+  height: 600px;
   border-radius: 10px;
   overflow-y: scroll;
   position: relative;
