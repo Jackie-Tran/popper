@@ -15,8 +15,8 @@ function App() {
   const [popper, setPopper] = useState<any>();
   const [parent, setParent] = useState<any>();
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const { styles } = usePopper(popcorn, popper, parent, {
-    placement: 'right',
+  const { styles } = usePopper(popcorn, popper, {
+    placement: 'bottom',
   });
 
   useEffect(() => {

@@ -1,5 +1,6 @@
 import { SSL_OP_EPHEMERAL_RSA } from 'constants';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo } from 'react';
+import { useFlip } from './useFlip';
 
 type Styles = {
   [key: string]: React.CSSProperties;
@@ -28,7 +29,6 @@ type UsePopperParams = {
 export const usePopper = (
   popcorn: HTMLDivElement,
   popper: HTMLDivElement,
-  parent: HTMLDivElement,
   options: PopperOptions = {
     placement: 'bottom',
   }
@@ -81,6 +81,7 @@ export const usePopper = (
     [popcorn, popper]
   );
 
+  const placement = useFlip(popper, options.placement ? options.placement : 'bottom');
   const [state, setState] = React.useState<PopperState>({
     styles: {
       popper: {
@@ -95,43 +96,11 @@ export const usePopper = (
       styles: {
         popper: {
           position: 'absolute',
-          ...calculatePosition(options?.placement),
+          ...calculatePosition(placement),
         },
       },
     });
-  }, [options.placement, calculatePosition]);
-
-  // flipping
-  useLayoutEffect(() => {
-    if (popcorn && popcorn.parentElement) {
-      const handleParentScroll = (e: Event) => {
-        if (popcorn.parentElement) {
-          const parent = popcorn.parentElement;
-          const bottomBound = popper.offsetTop + popper.offsetHeight;
-          const topBound = popper.offsetTop;
-          const leftBound = popper.offsetLeft;
-          const rightBound = popper.offsetLeft + popper.offsetWidth;
-          if (options.placement === 'bottom' && bottomBound > parent.scrollTop + parent.offsetHeight) {
-            console.log('switch placement to top');
-          } else if (options.placement === 'top' && topBound < parent.scrollTop) {
-            console.log('switch placement to bottom');
-          } else if (options.placement === 'left' && leftBound < parent.scrollLeft) {
-              console.log('switch placement to right');
-          } else if (options.placement === 'right' && rightBound > parent.scrollLeft + parent.offsetWidth) {
-              console.log('switch placement to left');
-          }
-        }
-      };
-      popcorn.parentElement.addEventListener('scroll', handleParentScroll);
-      return () => {
-        if (popcorn.parentElement)
-          return popcorn.parentElement.removeEventListener(
-            'scroll',
-            handleParentScroll
-          );
-      };
-    }
-  });
+  }, [placement, calculatePosition]);
 
   return state;
 };
