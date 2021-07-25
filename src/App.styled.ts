@@ -11,11 +11,25 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
+  position: relative;
   width: 600px;
   height: 600px;
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  overflow-y: scroll;
-  position: relative;
+  overflow: scroll;
+  overscroll-behavior: contain;
+  border: 2px dashed #ff6b81;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ::after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 2000px;
+      height: 2000px;
+  }
 `;
 
 export const View = styled.div`
@@ -35,6 +49,8 @@ export const Popcorn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: auto;
+  margin-top: auto;
 `;
 
 export const Popper = styled.div`

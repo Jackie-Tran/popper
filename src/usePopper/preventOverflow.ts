@@ -1,3 +1,3 @@
-export const preventOverflow = ({ state }) => {
+export const preventOverflow = () => {
 
 }

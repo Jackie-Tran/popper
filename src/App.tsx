@@ -13,27 +13,26 @@ import { usePopper } from './usePopper/usePopper';
 function App() {
   const [popcorn, setPopcorn] = useState<any>();
   const [popper, setPopper] = useState<any>();
+  const [parent, setParent] = useState<any>();
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const { styles } = usePopper(popcorn, popper, {
-    placement: 'bottom',
+  const { styles } = usePopper(popcorn, popper, parent, {
+    placement: 'right',
   });
 
   useEffect(() => {
     if (wrapperRef.current) {
-      wrapperRef.current.scrollLeft = wrapperRef.current.offsetWidth / 2;
-      wrapperRef.current.scrollTop = wrapperRef.current.offsetHeight / 2;
+    //   wrapperRef.current.scrollLeft = wrapperRef.current.offsetWidth;
+    //   wrapperRef.current.scrollTop = wrapperRef.current.offsetHeight;
     }
   }, []);
-  
+
   return (
     <Container>
       <Wrapper ref={wrapperRef}>
-        <View>
-          <Popcorn ref={setPopcorn}>Popcorn Content</Popcorn>
-          <Popper ref={setPopper} style={styles.popper}>
-            Tooltip Info
-          </Popper>
-        </View>
+        <Popcorn ref={setPopcorn}>Popcorn Content</Popcorn>
+        <Popper ref={setPopper} style={styles.popper}>
+          Tooltip Info
+        </Popper>
       </Wrapper>
     </Container>
   );
