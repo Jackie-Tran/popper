@@ -54,7 +54,8 @@ export const usePopper = (
             left:
               popcorn?.offsetLeft +
               popcorn?.offsetWidth / 2 -
-              popper?.offsetWidth / 2 + offset[0],
+              popper?.offsetWidth / 2 +
+              offset[0],
           };
         case 'top':
           return {
@@ -62,14 +63,16 @@ export const usePopper = (
             left:
               popcorn?.offsetLeft +
               popcorn?.offsetWidth / 2 -
-              popper?.offsetWidth / 2 + offset[0],
+              popper?.offsetWidth / 2 +
+              offset[0],
           };
         case 'left':
           return {
             top:
               popcorn?.offsetTop +
               popcorn?.offsetHeight / 2 -
-              popper?.offsetHeight / 2 + offset[0],
+              popper?.offsetHeight / 2 +
+              offset[0],
             left: popcorn?.offsetLeft - popper?.offsetWidth - offset[1],
           };
         case 'right':
@@ -77,7 +80,8 @@ export const usePopper = (
             top:
               popcorn?.offsetTop +
               popcorn?.offsetHeight / 2 -
-              popper?.offsetHeight / 2 + offset[0],
+              popper?.offsetHeight / 2 +
+              offset[0],
             left: popcorn?.offsetLeft + popcorn?.offsetWidth + offset[1],
           };
         default:
@@ -86,11 +90,12 @@ export const usePopper = (
             left:
               popcorn?.offsetLeft +
               popcorn?.offsetWidth / 2 -
-              popper?.offsetWidth / 2 + offset[0],
+              popper?.offsetWidth / 2 +
+              offset[0],
           };
       }
     },
-    [popcorn, popper]
+    [popcorn, popper, offset]
   );
   const [state, setState] = React.useState<PopperState>({
     styles: {
@@ -110,7 +115,7 @@ export const usePopper = (
         },
       },
     });
-  }, [placement, calculatePosition]);
+  }, [placement, offset, calculatePosition]);
 
   return state;
 };
