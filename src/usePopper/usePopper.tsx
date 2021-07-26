@@ -1,5 +1,4 @@
-import { SSL_OP_EPHEMERAL_RSA } from 'constants';
-import React, { useCallback, useEffect, useLayoutEffect, useMemo } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useFlip } from './useFlip';
 
 type Styles = {
@@ -20,11 +19,11 @@ type PopperOptions = {
   // rest of the modifiers
 };
 
-type UsePopperParams = {
-  popcornElement: Element;
-  popperElement: Element;
-  options: PopperOptions;
-};
+// type UsePopperParams = {
+//   popcornElement: Element;
+//   popperElement: Element;
+//   options: PopperOptions;
+// };
 
 export const usePopper = (
   popcorn: HTMLDivElement,
