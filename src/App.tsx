@@ -1,26 +1,24 @@
-import React, { useEffect, useRef, useState } from 'react';
-import './App.css';
-import {
-  Container,
-  Popcorn,
-  Popper,
-  Wrapper,
-} from './App.styled';
-import { usePopper } from './usePopper/usePopper';
+import React, { useEffect, useRef, useState } from "react";
+import "./App.css";
+import { Container, Popcorn, Popper, Wrapper } from "./App.styled";
+import { usePopper } from "./usePopper/usePopper";
 
 function App() {
   const [popcorn, setPopcorn] = useState<any>();
   const [popper, setPopper] = useState<any>();
+  const [arrow, setArrow] = useState<any>();
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const { styles } = usePopper(popcorn, popper, {
-    placement: 'bottom',
+  const { styles } = usePopper(popcorn, popper, arrow, {
+    placement: "bottom",
     offset: [0, 16],
   });
 
   useEffect(() => {
+    console.log(styles.popper);
+    console.log(styles.arrow);
     if (wrapperRef.current) {
-    //   wrapperRef.current.scrollLeft = wrapperRef.current.offsetWidth;
-    //   wrapperRef.current.scrollTop = wrapperRef.current.offsetHeight;
+      //   wrapperRef.current.scrollLeft = wrapperRef.current.offsetWidth;
+      //   wrapperRef.current.scrollTop = wrapperRef.current.offsetHeight;
     }
   }, []);
 
@@ -30,6 +28,7 @@ function App() {
         <Popcorn ref={setPopcorn}>Popcorn Content</Popcorn>
         <Popper ref={setPopper} style={styles.popper}>
           Tooltip Info
+          <div ref={setArrow} style={styles.arrow} />
         </Popper>
       </Wrapper>
     </Container>
