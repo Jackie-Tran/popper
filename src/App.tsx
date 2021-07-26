@@ -14,6 +14,7 @@ function App() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const { styles } = usePopper(popcorn, popper, {
     placement: 'bottom',
+    offset: [0, 16],
   });
 
   useEffect(() => {

@@ -26,3 +26,5 @@ export type UsePopperParams = {
   popperElement: Element;
   options: PopperOptions;
 };
+
+export type PopperOffset = [number, number];
