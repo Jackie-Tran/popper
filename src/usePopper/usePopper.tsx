@@ -136,7 +136,7 @@ export const usePopper = (
           return {
             position: "absolute",
             content: "",
-            borderRight: "12px solid white",
+            borderRight: "12px solid inherit",
             borderTop: "10px solid transparent",
             borderBottom: "10px solid transparent",
             left: "-12px",

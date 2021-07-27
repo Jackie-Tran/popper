@@ -14,8 +14,6 @@ function App() {
   });
 
   useEffect(() => {
-    console.log(styles.popper);
-    console.log(styles.arrow);
     if (wrapperRef.current) {
       //   wrapperRef.current.scrollLeft = wrapperRef.current.offsetWidth;
       //   wrapperRef.current.scrollTop = wrapperRef.current.offsetHeight;
